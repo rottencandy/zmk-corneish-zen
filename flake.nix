@@ -22,7 +22,7 @@
         board = "corneish_zen_v2_%PART%";
         parts = [ "left" "right" ];
         # enable for dongle setup
-        extraCmakeFlags = [ "-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n" "-DCONFIG_ZMK_DISPLAY=n" ];
+        extraCmakeFlags = [ "-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n" ];
         # enable for logging
         #extraWestBuildFlags = [ "-S zmk-usb-logging" ];
 
@@ -36,7 +36,7 @@
         #shield = "settings_reset";
         #parts = [ "left" "right" "dongle" ];
 
-        zephyrDepsHash = "sha256-ESITAO3VT1xqrREScfVJlVjlEFN1OC10QckEQIcKPPM=";
+        zephyrDepsHash = "sha256-ryPpLcMnKkze+sK7Y9efTmUlF0FOlKG3QXg+Q8KMAlQ=";
         enableZmkStudio = true;
 
         meta = {
