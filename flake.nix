@@ -22,7 +22,7 @@
         board = "corneish_zen_v2_%PART%";
         parts = [ "left" "right" ];
         # enable for dongle setup
-        extraCmakeFlags = [ "-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n" ];
+        extraCmakeFlags = [ "-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n" "-DCONFIG_ZMK_DISPLAY=n" ];
         # enable for logging
         #extraWestBuildFlags = [ "-S zmk-usb-logging" ];
 
