@@ -36,7 +36,7 @@
         #shield = "settings_reset";
         #parts = [ "left" "right" "dongle" ];
 
-        zephyrDepsHash = "sha256-ryPpLcMnKkze+sK7Y9efTmUlF0FOlKG3QXg+Q8KMAlQ=";
+        zephyrDepsHash = "sha256-r7wJ1werkNvB0I+Ti7x7BsCQxQzjSN6bRXNBrFS4n4o=";
         enableZmkStudio = true;
 
         meta = {
