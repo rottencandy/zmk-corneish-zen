@@ -19,25 +19,36 @@
         src = nixpkgs.lib.sourceFilesBySuffices self [ ".board" ".cmake" ".conf" ".defconfig" ".dts" ".dtsi" ".json" ".keymap" ".overlay" ".shield" ".yml" "_defconfig" ];
 
         # boards
-        board = "corneish_zen_v2_%PART%";
-        parts = [ "left" "right" ];
+        #board = "corneish_zen_v2_%PART%";
+        #parts = [ "left" "right" ];
         # enable for dongle setup
-        extraCmakeFlags = [ "-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n" ];
+        #extraCmakeFlags = [ "-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n" ];
         # enable for logging
         #extraWestBuildFlags = [ "-S zmk-usb-logging" ];
 
         # dongle
-        #board = "nice_nano_v2";
-        #shield = "corneish_zen_v2_dongle";
-        #parts = [ "dongle" ];
+        board = "nice_nano_v2";
+        shield = "corneish_zen_v2_dongle";
+        parts = [ "dongle" ];
+        # dongle has no display, but picks up CONFIG_ZMK_DISPLAY=y from corneish_zen_v2.conf
+        extraCmakeFlags = [ "-DCONFIG_ZMK_DISPLAY=n" ];
 
         # bt settings reset
         #board = "nice_nano_v2";
         #shield = "settings_reset";
         #parts = [ "left" "right" "dongle" ];
 
-        zephyrDepsHash = "sha256-r7wJ1werkNvB0I+Ti7x7BsCQxQzjSN6bRXNBrFS4n4o=";
+        zephyrDepsHash = "sha256-gsqiTDJLAihVyBXVFlgXwqRmlREcFJctKpl4tEWmVlY=";
         enableZmkStudio = true;
+
+        # nanopb pinned by zmk v0.3.0 imports pkg_resources, which setuptools >= 81 no longer ships;
+        # switch it to importlib.resources (as upstream nanopb did)
+        postConfigure = ''
+          sed -i \
+            -e 's/import pkg_resources/import importlib.resources/' \
+            -e "s|pkg_resources.resource_filename('grpc_tools', '_proto')|str(importlib.resources.files('grpc_tools') / '_proto')|" \
+            ../modules/lib/nanopb/generator/proto/{__init__,_utils}.py
+        '';
 
         meta = {
           description = "ZMK firmware";
