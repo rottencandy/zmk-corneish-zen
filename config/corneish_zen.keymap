@@ -33,7 +33,7 @@
 
         kl_gui {
             bindings = <&kp LGUI>;
-            key-positions = <15 16>;
+            key-positions = <17 18>;
         };
 
         zx_shift {
@@ -46,7 +46,7 @@
             key-positions = <28 29>;
         };
 
-        df_ctrl {
+        df_esc {
             bindings = <&kp ESC>;
             key-positions = <12 13>;
         };
